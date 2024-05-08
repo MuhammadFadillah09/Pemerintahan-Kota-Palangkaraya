@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Flower</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+
+  .flower {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #FF66CC, #FFCC66);
+    animation: rotate 5s linear infinite, glow 2s ease-in-out infinite alternate;
+  }
+
+  .flower:before, .flower:after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .flower:before {
+    top: -50px;
+    left: 25px;
+    background: linear-gradient(45deg, #FF66CC, #FFCC66);
+  }
+
+  .flower:after {
+    top: 25px;
+    left: -50px;
+    background: linear-gradient(45deg, #FF66CC, #FFCC66);
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 20px #FF66CC;
+    }
+    100% {
+      box-shadow: 0 0 50px #FFCC66, 0 0 20px #FF66CC;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="flower"></div>
+</body>
+</html>
