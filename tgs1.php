@@ -109,11 +109,12 @@
         <h1>Pemerintahan Kota Palangkaraya</h1>
     </header>
     <nav>
-        <a href="t.html">Beranda</a>
-        <a href="profil.html">Profil Kota</a>
-        <a href="layanan.html">Layanan Publik</a>
-        <a href="berita.html">Berita</a>
-        <a href="kontak.html">Kontak</a>
+        <a href="t.php">Beranda</a>
+        <a href="profil.php">Profil Kota</a>
+        <a href="layanan.php">Layanan Publik</a>
+        <a href="berita.php">Berita</a>
+        <a href="kontak.php">Kontak</a>
+        <a href="login.php">Login</a>
     </nav>
     <main>
         <div class="slideshow-container">
@@ -131,15 +132,28 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        
-        <h2>Selamat Datang di Pemerintahan Kota Palangkaraya</h2>
+
+        <?php
+        $visitCount = 1;
+        if(isset($_COOKIE['visitCount'])) {
+            $visitCount = $_COOKIE['visitCount'] + 1;
+        }
+        setcookie('visitCount', $visitCount, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+        if ($visitCount > 1) {
+            echo "<h3>Selamat Datang Kembali! Ini adalah kunjungan Anda yang ke-$visitCount.</h3>";
+        } else {
+            echo "<h3>Selamat Datang di Situs Resmi Pemerintahan Kota Palangkaraya!</h3>";
+        }
+        ?>
+
         <p>Situs ini merupakan portal resmi Pemerintahan Kota Palangkaraya yang menyediakan informasi tentang berbagai layanan publik, kebijakan pemerintah, berita terbaru, dan banyak lagi.</p>
         <p>Silakan jelajahi situs web kami untuk mendapatkan informasi lebih lanjut. Kami berkomitmen untuk memberikan pelayanan terbaik kepada warga Kota Palangkaraya.</p>
         <br><br>
     </main>
     <footer>
         <p>&copy; 2024 Pemerintahan Kota Palangkaraya</p>
-        <a href="dashboard.html"><button>Dashboard</button></a>
+        
     </footer>
     <script>
         var slideIndex = 0;
@@ -155,7 +169,7 @@
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
             slides[slideIndex-1].style.display = "block";  
-        timer = setTimeout(showSlides, 3000); 
+            timer = setTimeout(showSlides, 3000); 
         }
         function plusSlides(n) {
             clearTimeout(timer); // Hentikan loop interval
